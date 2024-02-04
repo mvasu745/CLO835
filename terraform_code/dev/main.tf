@@ -114,8 +114,18 @@ resource "aws_eip" "static_eip" {
   )
 }
 # ECR Repository Create
-resource "aws_ecr_repository" "my_repository" {
-  name                 = "clo835_assignment1_repository"
+resource "aws_ecr_repository" "my_repository_webapp" {
+  name                 = "clo835_assignment1_repository_webapp"
+  image_tag_mutability = "IMMUTABLE"
+
+  image_scanning_configuration {
+    scan_on_push = true
+  }
+}
+
+# ECR Repository Create
+resource "aws_ecr_repository" "my_repository_mysql" {
+  name                 = "clo835_assignment1_repository_mysql"
   image_tag_mutability = "IMMUTABLE"
 
   image_scanning_configuration {
